@@ -1,0 +1,235 @@
+:root {
+    --parentDiv-background-color: #cbcbcb;
+    --sentence-text-color: #082032;
+    --timeBar-background-color: #6B7AA1;
+    --underLine-text-color: #368B85;
+    --correct-text-color: #50CB93;
+    --correct-background-color: #7fc8aa31;
+    --wrong-text-color: #D54C4C;
+    --wrong-background-color: rgba(213, 76, 76, 0.522);
+    --underLine-background-color: #0F52BA;
+    --hover-background-color: #f2f2f2;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    position: fixed;
+    width: 4px;
+    color: black;
+    box-shadow: 0 0 5px grey;
+    transition: .3s all ease;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, .7);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(204, 204, 204);
+    border-radius: 2rem;
+}
+
+::-webkit-scrollbar:hover {
+    background: black;
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+div.parentDiv {
+    background: var(--parentDiv-background-color);
+    width: 100vw;
+    height: 100vh;
+}
+div.whiteSpace{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 2rem;
+    background: whitesmoke;
+    border-radius: .5rem;
+}
+div.sentenceCol {
+    scroll-behavior: smooth;
+    display: flex;
+    color: var(--sentence-text-color);
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    width: 80rem;
+    overflow: hidden;
+    overflow-y: normal;
+    height: 70vh;
+    letter-spacing: 3px;
+    font-size: 2.5rem;
+}
+
+div.sentenceCol::-webkit-scrollbar {
+    width: 0;
+}
+
+div.flexParent {
+    display: flex;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+
+div.flexItem {
+    position: relative;
+}
+
+div.flexParent>div.flexItem {
+    padding: .1rem .3rem;
+}
+
+div.underLine {
+    color: var(--underLine-text-color);
+}
+
+div.underLine::after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    border-radius: 9rem;
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: .3rem;
+    animation: blink .9s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        background: var(--underLine-background-color);
+    }
+
+    50% {
+        background: transparent;
+    }
+}
+
+div.blackHover {
+    display: none;
+    font-family: monospace;
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+div.hover {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: auto;
+    width: max-content;
+    transform: translate(-50%, -50%);
+    justify-content: space-between;
+    align-items: center;
+    background: var(--hover-background-color);
+    color: var(--underLine-background-color);
+    font-size: 4rem;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, .5);
+}
+
+span.states {
+    font-size: 2rem;
+    margin: 2rem;
+    color: teal;
+}
+
+span.states>span {
+    margin: 2rem;
+}
+
+div.hover>button {
+    cursor: pointer;
+    width: 10rem;
+    border: none;
+    color: var(--hover-color);
+    font-size: 1rem;
+    font-weight: bolder;
+    letter-spacing: 2px;
+    border-radius: 2rem;
+    padding: .4rem;
+    transition: .3s all ease;
+}
+
+div.hover>button:hover {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .5);
+    transform: scale(1.1);
+}
+
+.timeBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: .3rem;
+    background: var(--timeBar-background-color);
+    border-radius: 0 8rem 8rem 0;
+    transition: 1s all ease;
+}
+
+.correct {
+    color: var(--correct-text-color);
+    background: var(--correct-background-color);
+}
+
+.wrong {
+    color: var(--wrong-text-color);
+    background: var(--wrong-background-color);
+}
+
+.floating {
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: shake .5s forwards;
+}
+
+@keyframes shake {
+    0% {
+        top: 100%;
+        filter: opacity(100%);
+    }
+
+    25% {
+        top: 110%;
+        left: 30%;
+        filter: opacity(75%);
+    }
+
+    50% {
+        top: 120%;
+        left: 70%;
+        filter: opacity(50%);
+    }
+
+    75% {
+        top: 130%;
+        left: 40%;
+        filter: opacity(25%);
+    }
+
+    100% {
+        top: 140%;
+        left: 60%;
+        filter: opacity(0%);
+    }
+}
