@@ -14,7 +14,7 @@ wrongCount = correctCount = totalCount = 0;
 var sentence = [];
 
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "/sentence.json");
+xhr.open("GET", "https://soaibhaque.github.io/TypingTest/sentence.json");
 xhr.onload = () => {
     if (xhr.status == 200) {
         JSON.parse(xhr.responseText).sentence.forEach(element => {
