@@ -205,13 +205,14 @@ div.hover>button:hover {
     position: absolute;
     top: 105%;
     left: 50%;
+    color: var(--wrong-text-color);
     transform: translateX(-50%);
-    animation: shake .5s forwards;
+    animation: shake 1s forwards;
 }
 
 .tooltip {
     position: absolute;
-    padding: .2rem 1rem;
+    padding: .4rem 1rem;
     border-radius: .5rem;
     background: grey;
     font-size: 1.8rem;
@@ -233,6 +234,7 @@ div.hover>button:hover {
     border-left: 10px solid whitesmoke;
     border-right: 10px solid whitesmoke;
 }
+
 
 @keyframes shake {
     0% {

@@ -65,12 +65,12 @@ function startProcessing() {
     (() => {
         const tooltip = newEle('span');
         tooltip.classList.add("tooltip");
-        tooltip.innerText = "Type form here !";
+        tooltip.innerText = "Start Typing !";
         Selector('body').insertBefore(tooltip, Selector('body').children[0]);
         //adjust tooltip to the correct position
         sI(() => {
             if (tooltip) {
-                const fromTop = (SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().y - SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().height - 10);
+                const fromTop = (SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().y - SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().height - 15);
                 const fromLeft = (SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().x - (Selector("span.tooltip").getBoundingClientRect().width - 32) / 2);
                 Selector("span.tooltip").style.top = fromTop + "px";
                 Selector("span.tooltip").style.left = fromLeft + "px";
