@@ -36,7 +36,6 @@ function startProcessing() {
     //** Genrate the sentences **//
 
     var randomSentence = sentence[Math.floor(Math.random() * sentence.length)];
-    // var randomSentence = sentence[3];
     var refineSentence = randomSentence.replaceAll(" ", ` ${keyString}`);
     var splitSentence = refineSentence.split(keyString);
     for (i = 0; i < splitSentence.length; i++) {
@@ -61,6 +60,36 @@ function startProcessing() {
     SelectorAll('div.flexParent')[0].id = "presentFlex";
     SelectorAll('div.flexParent')[0].children[0].classList.add('underLine');
 
+    // adding tooltip on fisrt word
+
+    (() => {
+        const tooltip = newEle('span');
+        tooltip.classList.add("tooltip");
+        tooltip.innerText = "Type form here !";
+        Selector('body').insertBefore(tooltip, Selector('body').children[0]);
+        //adjust tooltip to the correct position
+        sI(() => {
+            if (tooltip) {
+                const fromTop = (SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().y - SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().height - 10);
+                const fromLeft = (SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().x - (Selector("span.tooltip").getBoundingClientRect().width - 32) / 2);
+                Selector("span.tooltip").style.top = fromTop + "px";
+                Selector("span.tooltip").style.left = fromLeft + "px";
+            }
+        })
+    })();
+
+    //removing tool tip
+
+    const removeToolTip = () => Selector("span.tooltip").remove();
+
+    //key functions
+
+    function gotoNextWord(presence) {
+        Selector('div#presentFlex div.underLine').classList.add(presence);
+        Selector('div#presentFlex div.underLine').nextSibling.classList.add("underLine");
+        Selector('div#presentFlex div.underLine').classList.remove("underLine");
+    }
+
     function spaceKey(key) {
         if (key.keyCode == 32) {
             Selector('div#presentFlex div.underLine').classList.add("correct");
@@ -83,11 +112,10 @@ function startProcessing() {
 
     function correctKey() {
         if (Selector('div#presentFlex div.underLine').nextSibling) {
-            Selector('div#presentFlex div.underLine').classList.add("correct");
-            Selector('div#presentFlex div.underLine').nextSibling.classList.add("underLine");
-            Selector('div#presentFlex div.underLine').classList.remove("underLine");
+            gotoNextWord("correct");
             totalCount++;
             correctCount++;
+            removeToolTip();
             timeBar();
         };
     };
@@ -107,12 +135,11 @@ function startProcessing() {
             return false;
         } else {
             floatingWrongKey(key);
-            Selector('div#presentFlex div.underLine').classList.add("wrong");
-            Selector('div#presentFlex div.underLine').nextSibling.classList.add("underLine");
-            Selector('div#presentFlex div.underLine').classList.remove("underLine");
+            gotoNextWord("wrong");
             totalCount++;
             wrongCount++;
             timeBar();
+            return false;
         };
     };
 
@@ -159,7 +186,7 @@ function startProcessing() {
     };
 
     //autoscroll
-    sI(()=>{
+    sI(() => {
         Selector('#presentFlex').scrollIntoView();
     })
 
@@ -173,6 +200,8 @@ function startProcessing() {
             return false;
         } else if (key.keyCode == 8) {
             backSpace();
+        } else if (key.keyCode == 116 || (key.ctrlKey && key.keyCode == 82)) { //refresh the page with F5 and ctrl + R
+            location.reload();
         } else if (key.key == Selector('div#presentFlex div.underLine').innerText) {
             correctKey();
             return false;

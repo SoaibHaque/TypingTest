@@ -49,25 +49,29 @@ div.parentDiv {
     width: 100vw;
     height: 100vh;
 }
-div.whiteSpace{
-    position: absolute;
-    top: 10%;
+
+div.whiteSpace {
+    position: relative;
+    top: 8%;
     left: 50%;
+    margin: 0;
+    width: max-content;
     transform: translateX(-50%);
     padding: 2rem;
     background: whitesmoke;
     border-radius: .5rem;
 }
+
 div.sentenceCol {
-    scroll-behavior: smooth;
     display: flex;
+    scroll-behavior: smooth;
     color: var(--sentence-text-color);
     flex-wrap: wrap;
     padding: 1rem 2rem;
-    width: 80rem;
+    width: calc(100vw - 20vw);
+    height: calc(100vw - 60vw);
     overflow: hidden;
     overflow-y: normal;
-    height: 70vh;
     letter-spacing: 3px;
     font-size: 2.5rem;
 }
@@ -91,15 +95,16 @@ div.flexParent>div.flexItem {
 }
 
 div.underLine {
+    position: relative;
     color: var(--underLine-text-color);
 }
 
 div.underLine::after {
     content: '';
+    position: absolute;
     display: inline-block;
     width: 100%;
     border-radius: 9rem;
-    position: absolute;
     bottom: -10%;
     left: 50%;
     transform: translateX(-50%);
@@ -124,6 +129,7 @@ div.blackHover {
     font-family: monospace;
     background: rgba(0, 0, 0, .5);
     position: fixed;
+    top: 0;
     width: 100%;
     height: 100%;
 }
@@ -201,6 +207,31 @@ div.hover>button:hover {
     left: 50%;
     transform: translateX(-50%);
     animation: shake .5s forwards;
+}
+
+.tooltip {
+    position: absolute;
+    padding: .2rem 1rem;
+    border-radius: .5rem;
+    background: grey;
+    font-size: 1.8rem;
+    width: max-content;
+    color: azure;
+    z-index: 999999;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    background: grey;
+    border-top: 10px solid grey;
+    border-bottom: 10px solid whitesmoke;
+    border-left: 10px solid whitesmoke;
+    border-right: 10px solid whitesmoke;
 }
 
 @keyframes shake {
