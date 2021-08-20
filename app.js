@@ -3,6 +3,7 @@ var Selector = selector => document.querySelector(selector);
 var SelectorAll = selectorAll => document.querySelectorAll(selectorAll);
 var sT = (fun, interval) => setTimeout(fun, interval);
 var sI = (fun, interval) => setInterval(fun, interval);
+var cI = intervalClear => clearInterval(intervalClear);
 var newEle = element => document.createElement(element);
 const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var i, j;
@@ -68,19 +69,21 @@ function startProcessing() {
         tooltip.innerText = "Start Typing !";
         Selector('body').insertBefore(tooltip, Selector('body').children[0]);
         //adjust tooltip to the correct position
-        sI(() => {
-            if (tooltip) {
+        const toolTipAdjust = sI(() => {
+            if (Selector("span.tooltip")) {
                 const fromTop = (SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().y - SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().height - 15);
                 const fromLeft = (SelectorAll("#presentFlex>div.flexItem")[0].getBoundingClientRect().x - (Selector("span.tooltip").getBoundingClientRect().width - 32) / 2);
                 Selector("span.tooltip").style.top = fromTop + "px";
                 Selector("span.tooltip").style.left = fromLeft + "px";
+            } else {
+                cI(toolTipAdjust);
             }
         })
     })();
 
     //removing tool tip
 
-    const removeToolTip = () => Selector("span.tooltip").remove();
+    const removeToolTip = () => Selector("span.tooltip") ? Selector("span.tooltip").remove() : false;
 
     //key functions
 

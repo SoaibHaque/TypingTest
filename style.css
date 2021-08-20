@@ -238,30 +238,30 @@ div.hover>button:hover {
 
 @keyframes shake {
     0% {
-        top: 100%;
+        top: 90%;
         filter: opacity(100%);
     }
 
     25% {
-        top: 110%;
+        top: 100%;
         left: 30%;
         filter: opacity(75%);
     }
 
     50% {
-        top: 120%;
+        top: 110%;
         left: 70%;
         filter: opacity(50%);
     }
 
     75% {
-        top: 130%;
+        top: 120%;
         left: 40%;
         filter: opacity(25%);
     }
 
     100% {
-        top: 140%;
+        top: 130%;
         left: 60%;
         filter: opacity(0%);
     }
