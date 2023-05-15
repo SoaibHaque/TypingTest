@@ -1,14 +1,12 @@
 :root {
-    --parentDiv-background-color: #cbcbcb;
-    --sentence-text-color: #082032;
+    --parentDiv-background-color: #f3f3f3;
+    --sentence-text-color: #0744b6;
     --timeBar-background-color: #6B7AA1;
-    --underLine-text-color: #368B85;
-    --correct-text-color: #50CB93;
-    --correct-background-color: #7fc8aa31;
+    --underLine-text-color: #36378b;
+    --correct-text-color: #707070a6;
     --wrong-text-color: #D54C4C;
-    --wrong-background-color: rgba(213, 76, 76, 0.522);
     --underLine-background-color: #0F52BA;
-    --hover-background-color: #f2f2f2;
+    --hover-background-color: #f3f3f3;
 }
 
 *,
@@ -17,63 +15,47 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* background: rgba(0, 233, 0, .1); */
 }
 
 ::-webkit-scrollbar {
-    position: fixed;
-    width: 4px;
-    color: black;
-    box-shadow: 0 0 5px grey;
-    transition: .3s all ease;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, .7);
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgb(204, 204, 204);
-    border-radius: 2rem;
-}
-
-::-webkit-scrollbar:hover {
-    background: black;
+    width: 0;
 }
 
 body {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-div.parentDiv {
-    background: var(--parentDiv-background-color);
+    font-size: 100%;
+    font-family: "Roboto Mono", "Roboto Mono", "Vazirmatn";
     width: 100vw;
     height: 100vh;
 }
 
+div.parentDiv {
+    background: var(--parentDiv-background-color);
+    width: 100%;
+    height: 100%;
+}
+
 div.whiteSpace {
-    position: relative;
-    top: 8%;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
     left: 50%;
-    margin: 0;
-    width: max-content;
-    transform: translateX(-50%);
-    padding: 2rem;
+    transform: translate(-50%, -50%);
+    height: 20rem;
+    width: 70rem;
+    min-width: 50rem;
     background: whitesmoke;
-    border-radius: .5rem;
+    scroll-behavior: smooth;
 }
 
 div.sentenceCol {
+    font-size: 1.7rem;
+    line-height: 2.5rem;
+    width: 100%;
     display: flex;
-    scroll-behavior: smooth;
     color: var(--sentence-text-color);
     flex-wrap: wrap;
-    padding: 1rem 2rem;
-    width: calc(100vw - 20vw);
-    height: calc(100vw - 60vw);
-    overflow: hidden;
-    overflow-y: normal;
     letter-spacing: 3px;
-    font-size: 2.5rem;
 }
 
 div.sentenceCol::-webkit-scrollbar {
@@ -193,12 +175,10 @@ div.hover>button:hover {
 
 .correct {
     color: var(--correct-text-color);
-    background: var(--correct-background-color);
 }
 
 .wrong {
     color: var(--wrong-text-color);
-    background: var(--wrong-background-color);
 }
 
 .floating {
@@ -242,27 +222,15 @@ div.hover>button:hover {
         filter: opacity(100%);
     }
 
-    25% {
-        top: 100%;
-        left: 30%;
-        filter: opacity(75%);
-    }
-
-    50% {
-        top: 110%;
-        left: 70%;
-        filter: opacity(50%);
-    }
-
     75% {
-        top: 120%;
-        left: 40%;
+        top: 115%;
+        left: 35%;
         filter: opacity(25%);
     }
 
     100% {
-        top: 130%;
-        left: 60%;
+        top: 120%;
+        left: 55%;
         filter: opacity(0%);
     }
 }
